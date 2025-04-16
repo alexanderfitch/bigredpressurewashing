@@ -92,7 +92,6 @@ export default function Footer() {
               <li>Phone: (531) 255-5067</li>
               <li>Email: bigredpowerne@gmail.com</li>
               <li>Serving: Omaha and surrounding areas</li>
-              <li>Hours: Monday-Friday, 8am-6pm</li>
             </ul>
           </div>
         </div>

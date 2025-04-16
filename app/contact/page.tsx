@@ -38,7 +38,6 @@ export default function ContactPage() {
                   <div>
                     <h3 className="text-lg font-semibold">Phone</h3>
                     <p className="text-gray-600">(531) 255-5067</p>
-                    <p className="text-sm text-gray-500">Available Mon-Fri, 8am-6pm</p>
                   </div>
                 </div>
 
@@ -69,19 +68,26 @@ export default function ContactPage() {
             {/* Contact Form */}
             <div className="rounded-lg bg-white p-8 shadow-lg">
               <h2 className="mb-6 text-2xl font-bold">Request a Free Quote</h2>
-              <form className="space-y-6">
+              <form className="space-y-6" name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+                <input type="hidden" name="form-name" value="contact" />
+                <p className="hidden">
+                  <label>
+                    Don't fill this out if you're human: <input name="bot-field" />
+                  </label>
+                </p>
+
                 <div className="grid gap-6 sm:grid-cols-2">
                   <div>
                     <label htmlFor="name" className="mb-2 block text-sm font-medium">
                       Name
                     </label>
-                    <Input id="name" placeholder="Your name" required />
+                    <Input id="name" name="name" placeholder="Your name" required />
                   </div>
                   <div>
                     <label htmlFor="phone" className="mb-2 block text-sm font-medium">
                       Phone
                     </label>
-                    <Input id="phone" placeholder="Your phone number" required />
+                    <Input id="phone" name="phone" placeholder="Your phone number" required />
                   </div>
                 </div>
 
@@ -89,7 +95,7 @@ export default function ContactPage() {
                   <label htmlFor="email" className="mb-2 block text-sm font-medium">
                     Email
                   </label>
-                  <Input id="email" type="email" placeholder="Your email address" required />
+                  <Input id="email" name="email" type="email" placeholder="Your email address" required />
                 </div>
 
                 <div>
@@ -98,6 +104,7 @@ export default function ContactPage() {
                   </label>
                   <select
                     id="service"
+                    name="service"
                     className="w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
                     defaultValue=""
                   >
@@ -116,7 +123,12 @@ export default function ContactPage() {
                   <label htmlFor="message" className="mb-2 block text-sm font-medium">
                     Message
                   </label>
-                  <Textarea id="message" placeholder="Tell us about your project or ask any questions" rows={4} />
+                  <Textarea
+                    id="message"
+                    name="message"
+                    placeholder="Tell us about your project or ask any questions"
+                    rows={4}
+                  />
                 </div>
 
                 <Button type="submit" className="w-full bg-brand-red hover:bg-brand-darkRed">
@@ -143,12 +155,17 @@ export default function ContactPage() {
           </div>
 
           <div className="aspect-video overflow-hidden rounded-lg shadow-lg">
-            <div className="h-full w-full bg-gray-300">
-              {/* Replace with actual map embed */}
-              <div className="flex h-full items-center justify-center">
-                <p className="text-lg font-medium text-gray-600">Map of Omaha Service Area</p>
-              </div>
-            </div>
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d193579.24431550074!2d-96.1692058061841!3d41.25873350000001!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x87938dc8b50cfced%3A0x46424d4fae37b604!2sOmaha%2C%20NE!5e0!3m2!1sen!2sus!4v1713358851566!5m2!1sen!2sus"
+              width="100%"
+              height="100%"
+              style={{ border: 0 }}
+              allowFullScreen
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+              title="Omaha Service Area Map"
+              className="min-h-[400px]"
+            ></iframe>
           </div>
         </div>
       </section>
